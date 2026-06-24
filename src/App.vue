@@ -24,4 +24,7 @@ const listaProductos: Producto[] = [
 </ul>
 </div>
 </div>
+<p class="text-center mt-4">
+  Desarrollado por: Carlos Nina Gisbert
+</p>
 </template>
