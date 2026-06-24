@@ -45,10 +45,15 @@ const handleLogout = (): void => {
 
 <template>
   <div
-    class="container d-flex justify-content-center align-items-center"
-    style="font-family: sans-serif; min-height: 100vh;"
+    style="
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: sans-serif;
+      padding: 20px;
+    "
   >
-
     <!-- LOGIN -->
     <div
       v-if="!isAuthenticated"
@@ -62,7 +67,6 @@ const handleLogout = (): void => {
 
       <div class="card-body p-4">
         <form @submit.prevent="handleLogin">
-
           <div class="mb-3">
             <label class="form-label fw-bold">
               Usuario Docente
@@ -104,7 +108,6 @@ const handleLogout = (): void => {
           >
             Ingresar al Sistema
           </button>
-
         </form>
       </div>
     </div>
@@ -129,7 +132,6 @@ const handleLogout = (): void => {
       </div>
 
       <div class="card-body p-4 text-center">
-
         <h4 class="text-success fw-bold">
           ¡Bienvenido, Lic. Félix Maldonado!
         </h4>
@@ -149,9 +151,7 @@ const handleLogout = (): void => {
             <div>
               <span class="fw-bold">{{ p.nombre }}</span>
               <br />
-              <small class="text-muted">
-                ID: {{ p.id }}
-              </small>
+              <small class="text-muted">ID: {{ p.id }}</small>
             </div>
 
             <span class="badge bg-dark rounded-pill">
@@ -159,9 +159,7 @@ const handleLogout = (): void => {
             </span>
           </li>
         </ul>
-
       </div>
     </div>
-
   </div>
 </template>
