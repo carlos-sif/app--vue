@@ -185,7 +185,7 @@ const handleLogout = (): void => {
         </div>
 
         <p class="text-center mt-4">
-          Desarrollado por: Carlos Nina Gisbert ITPM
+          Desarrollado por: Carlos Nina Gisbert ITPM!
         </p>
       </div>
     </div>
