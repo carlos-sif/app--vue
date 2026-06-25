@@ -83,7 +83,7 @@ const handleLogout = (): void => {
               v-model="username"
               type="text"
               class="form-control"
-              placeholder="Ej: carlos.nina.sif"
+              placeholder="Ej: noemi.mendoza"
               required
             />
           </div>
