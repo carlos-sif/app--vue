@@ -83,7 +83,7 @@ const handleLogout = (): void => {
               v-model="username"
               type="text"
               class="form-control"
-              placeholder="Ej: noemi.mendoza"
+              placeholder="Ej: Carlos Nina"
               required
             />
           </div>
@@ -134,7 +134,7 @@ const handleLogout = (): void => {
 
       <div class="card-body p-4 text-center">
         <h4 class="text-success fw-bold">
-          ¡Bienvenido, Lic. Félix Maldonado!
+          ¡Bienvenido, Futuro Lic. Carlos Nina!
         </h4>
 
         <p class="text-muted small">
