@@ -28,24 +28,23 @@ const guardarProducto = () => {
 
     <div class="container">
 
-      <h1 class="text-center text-dark fw-bold mb-5">
+      <h1 class="text-center text-white fw-bold mb-5">
         Inventario de Productos
       </h1>
 
       <!-- LISTA DE PRODUCTOS -->
-      <div class="row g-4 justify-content-center">
+      <div class="row g-4">
 
         <div
           v-for="producto in store.listaProductos"
           :key="producto.id"
           class="col-6 col-md-4"
         >
-
           <div class="card h-100 shadow-lg border-0">
 
             <img
-               :src="producto.imagen"
-               class="card-img-top imagen-producto"
+              :src="producto.imagen"
+              class="card-img-top imagen-producto"
             >
 
             <div class="card-body text-center">
@@ -65,26 +64,25 @@ const guardarProducto = () => {
             </div>
 
           </div>
-
         </div>
 
       </div>
 
       <!-- TOTAL -->
       <div class="text-center mt-5">
-        <h3 class="fw-bold">
+        <h3 class="text-white fw-bold">
           Total Inventario: Bs {{ store.totalInventario }}
         </h3>
       </div>
 
-      <!-- FORMULARIO ABAJO -->
+      <!-- FORMULARIO -->
       <div class="row justify-content-center mt-5">
 
-        <div class="col-md-6">
+        <div class="col-12 col-md-6">
 
           <div class="card shadow-lg border-0 p-4">
 
-            <h3 class="text-center mb-4">
+            <h3 class="text-center text-dark mb-4">
               Agregar Producto
             </h3>
 
@@ -127,7 +125,7 @@ const guardarProducto = () => {
               <input
                 v-model="nuevoProducto.imagen"
                 class="form-control"
-                placeholder="URL Imagen"
+                placeholder="URL de la imagen"
               >
             </div>
 
@@ -167,12 +165,13 @@ const guardarProducto = () => {
   border-radius: 20px;
 }
 
-h1, h3 {
-  color: #1e3a8a;
-}
 .imagen-producto {
   width: 100%;
   height: 250px;
   object-fit: cover;
+}
+
+.card-title {
+  font-size: 1rem;
 }
 </style>
