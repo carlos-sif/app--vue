@@ -2,9 +2,9 @@
 import { reactive } from 'vue'
 import { useProductoStore } from '../stores/productoStore'
 
-const productoStore = useProductoStore()
+const store = useProductoStore()
 
-const producto = reactive({
+const nuevoProducto = reactive({
   id: 0,
   nombre: '',
   precio: 0,
@@ -12,99 +12,163 @@ const producto = reactive({
   imagen: ''
 })
 
-function enviarFormulario() {
-  if (producto.stock <= 0) {
-    alert('El stock debe ser mayor a 0')
-    return
-  }
+const guardarProducto = () => {
+  store.agregarProducto({ ...nuevoProducto })
 
-  productoStore.agregarProducto({ ...producto })
-
-  alert('Producto guardado correctamente')
-
-  producto.id = 0
-  producto.nombre = ''
-  producto.precio = 0
-  producto.stock = 0
-  producto.imagen = ''
+  nuevoProducto.id = 0
+  nuevoProducto.nombre = ''
+  nuevoProducto.precio = 0
+  nuevoProducto.stock = 0
+  nuevoProducto.imagen = ''
 }
 </script>
 
 <template>
-  <div class="container mt-4">
-    <form @submit.prevent="enviarFormulario">
-      <div class="row">
+  <div class="container-fluid fondo py-5">
 
-        <div class="col-12 col-md-6 mb-3">
-          <label class="form-label">ID</label>
-          <input
-            type="number"
-            class="form-control"
-            v-model="producto.id"
-          >
-        </div>
+    <div class="container">
 
-        <div class="col-12 col-md-6 mb-3">
-          <label class="form-label">Nombre</label>
-          <input
-            type="text"
-            class="form-control"
-            v-model="producto.nombre"
-          >
-        </div>
+      <h1 class="text-center text-dark fw-bold mb-5">
+        Inventario de Productos
+      </h1>
 
-        <div class="col-12 col-md-6 mb-3">
-          <label class="form-label">Precio</label>
-          <input
-            type="number"
-            class="form-control"
-            v-model="producto.precio"
-          >
-        </div>
+      <!-- LISTA DE PRODUCTOS -->
+      <div class="row g-4 justify-content-center">
 
-        <div class="col-12 col-md-6 mb-3">
-          <label class="form-label">Stock</label>
-          <input
-            type="number"
-            class="form-control"
-            v-model="producto.stock"
-          >
-        </div>
+        <div
+          v-for="producto in store.listaProductos"
+          :key="producto.id"
+          class="col-6 col-md-4"
+        >
 
-        <div class="col-12 col-md-6 mb-3">
-          <label class="form-label">Imagen</label>
-          <input
-            type="text"
-            class="form-control"
-            v-model="producto.imagen"
-          >
+          <div class="card h-100 shadow-lg border-0">
+
+            <img
+              :src="producto.imagen"
+              class="card-img-top"
+              style="height:220px; object-fit:cover;"
+            >
+
+            <div class="card-body text-center">
+
+              <h5 class="card-title fw-bold">
+                {{ producto.nombre }}
+              </h5>
+
+              <p class="mb-1">
+                <strong>Precio:</strong> Bs {{ producto.precio }}
+              </p>
+
+              <p>
+                <strong>Stock:</strong> {{ producto.stock }}
+              </p>
+
+            </div>
+
+          </div>
+
         </div>
 
       </div>
 
-      <button type="submit" class="btn btn-primary">
-        Guardar Producto
-      </button>
-    </form>
-  </div>
-  <hr>
+      <!-- TOTAL -->
+      <div class="text-center mt-5">
+        <h3 class="fw-bold">
+          Total Inventario: Bs {{ store.totalInventario }}
+        </h3>
+      </div>
 
-<h3>Lista de Productos</h3>
+      <!-- FORMULARIO ABAJO -->
+      <div class="row justify-content-center mt-5">
 
-<div
-  v-for="p in productoStore.listaProductos"
-  :key="p.id"
-  class="card mb-3"
->
-  <div class="card-body">
-    <h5>{{ p.nombre }}</h5>
-    <p>Precio: {{ p.precio }}</p>
-    <p>Stock: {{ p.stock }}</p>
-    <img
-      :src="p.imagen"
-      width="150"
-      alt="producto"
-    >
+        <div class="col-md-6">
+
+          <div class="card shadow-lg border-0 p-4">
+
+            <h3 class="text-center mb-4">
+              Agregar Producto
+            </h3>
+
+            <div class="mb-3">
+              <input
+                v-model.number="nuevoProducto.id"
+                type="number"
+                class="form-control"
+                placeholder="ID"
+              >
+            </div>
+
+            <div class="mb-3">
+              <input
+                v-model="nuevoProducto.nombre"
+                class="form-control"
+                placeholder="Nombre"
+              >
+            </div>
+
+            <div class="mb-3">
+              <input
+                v-model.number="nuevoProducto.precio"
+                type="number"
+                class="form-control"
+                placeholder="Precio"
+              >
+            </div>
+
+            <div class="mb-3">
+              <input
+                v-model.number="nuevoProducto.stock"
+                type="number"
+                class="form-control"
+                placeholder="Stock"
+              >
+            </div>
+
+            <div class="mb-3">
+              <input
+                v-model="nuevoProducto.imagen"
+                class="form-control"
+                placeholder="URL Imagen"
+              >
+            </div>
+
+            <button
+              class="btn btn-primary w-100"
+              @click="guardarProducto"
+            >
+              Guardar Producto
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
-</div>
 </template>
+
+<style scoped>
+.fondo {
+  min-height: 100vh;
+
+  background:
+    linear-gradient(rgba(255,255,255,.75),
+    rgba(255,255,255,.75)),
+    url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80');
+
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.card {
+  border-radius: 20px;
+}
+
+h1, h3 {
+  color: #1e3a8a;
+}
+</style>
