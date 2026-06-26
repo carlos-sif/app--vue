@@ -44,9 +44,8 @@ const guardarProducto = () => {
           <div class="card h-100 shadow-lg border-0">
 
             <img
-              :src="producto.imagen"
-              class="card-img-top"
-              style="height:220px; object-fit:cover;"
+               :src="producto.imagen"
+               class="card-img-top imagen-producto"
             >
 
             <div class="card-body text-center">
@@ -155,9 +154,9 @@ const guardarProducto = () => {
   min-height: 100vh;
 
   background:
-    linear-gradient(rgba(255,255,255,.75),
-    rgba(255,255,255,.75)),
-    url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80');
+    linear-gradient(rgba(0,0,0,.80),
+    rgba(0,0,0,.80)),
+    url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80');
 
   background-size: cover;
   background-position: center;
@@ -170,5 +169,10 @@ const guardarProducto = () => {
 
 h1, h3 {
   color: #1e3a8a;
+}
+.imagen-producto {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
 }
 </style>
