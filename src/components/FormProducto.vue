@@ -20,6 +20,8 @@ function enviarFormulario() {
 
   productoStore.agregarProducto({ ...producto })
 
+  alert('Producto guardado correctamente')
+
   producto.id = 0
   producto.nombre = ''
   producto.precio = 0
@@ -85,4 +87,24 @@ function enviarFormulario() {
       </button>
     </form>
   </div>
+  <hr>
+
+<h3>Lista de Productos</h3>
+
+<div
+  v-for="p in productoStore.listaProductos"
+  :key="p.id"
+  class="card mb-3"
+>
+  <div class="card-body">
+    <h5>{{ p.nombre }}</h5>
+    <p>Precio: {{ p.precio }}</p>
+    <p>Stock: {{ p.stock }}</p>
+    <img
+      :src="p.imagen"
+      width="150"
+      alt="producto"
+    >
+  </div>
+</div>
 </template>
